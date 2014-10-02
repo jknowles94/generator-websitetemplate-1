@@ -1,0 +1,218 @@
+// ----- Layout -----
+
+// Custom containers and columns
+.fullwidth, .fullwidth-sm, .fullwidth-np, .fullwidth-bg {
+	width: 100%;
+	padding-top: 45px;
+	padding-bottom: 45px;
+	@include clearfix();
+	clear: both;
+}
+.fullwidth-sm {
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+.fullwidth-bg, .fullwidth-np {
+	padding-top: 0;
+	padding-bottom: 0;
+}
+.fullwidth-bg {
+	background-position: center bottom;
+	background-repeat: no-repeat;
+}
+
+.col-np {
+	padding-left: 0;
+	padding-right: 0;
+}
+.col-lp {
+	padding-left: 30px;
+	padding-right: 30px;
+}
+
+
+// Background colours/patterns
+.bg-grey {
+	background: $color-grey-light;
+}
+.bg-black, .bg-black-item .item {
+	color: #fff;
+	background: #000;
+
+	a { color: #fff; }
+}
+
+
+// ----- General panel styling -----
+.panel-title, .panel-intro { text-align: center; }
+.panel-intro { @include rem(margin-bottom, 30px); }
+
+.text-block {
+	padding: 15px;
+	background-color: #fff;
+}
+
+
+// ----- Constant elements -----
+
+// ----- Header -----
+.header {
+    background: #ddd;
+}
+	.logo {
+		float: left;
+		margin: 10px 0;
+		img {
+			width: 100px;
+			height: 50px;
+		}
+	}
+	.nav-primary {
+		float: right;
+		margin: 10px 0;
+
+		a {
+			padding: 2px;
+			margin-left: 10px;
+		}
+	}
+
+
+// Header image
+.header-img {
+	position: relative;
+	overflow: hidden;
+
+	.item, img, .header-text { width: 100%; }
+
+	.item { 
+		max-height: 450px;
+		overflow: hidden;
+		@include align-parent;
+	}
+	&.header-img-lg .item { 
+		max-height: 675px;
+	}
+
+		.header-text {
+			@include align-center-vertical;
+			position: absolute;
+			text-align: center;
+			color: #fff;
+		}
+			h1 { @include rem(font-size, 52px); }
+}
+
+// ----- Cookie -----
+.cookie {
+	display: none; 
+	text-align: center;
+	@include rem(font-size, 12px); 
+
+	.close { 
+		float: right; 
+		@include rem(font-size, 22px); 
+	}
+}
+.cookie.active { display: block; }
+
+
+// Footer
+.footer {
+	@include rem(font-size, 12px);
+	background: $color-grey-light;
+
+	.nav-social {
+		float: right;
+
+		a {
+			padding: 2px 4px;
+			margin-left: 10px;
+			@include rem(font-size, 20px);
+			color: #fff;
+		}
+	}
+}
+
+	.nav-footer {
+
+		a { 			
+			padding: 2px;
+			margin-right: 5px;
+		}
+		a:hover {  }
+		a:before {
+			content: "/";
+			padding: 0 10px 0 0;
+		}
+		a:first-child:before {
+			display: none;
+		}
+	}
+
+
+/* ----- XS ----- */
+/* 479px and down */
+@media (max-width: $screen-xs-custom-max) {  
+
+}
+
+/* 480px and up */
+@media (min-width: $screen-xs-custom-min) {  
+
+}
+
+/* 599px and down */
+@media (max-width: $screen-xsm-custom-max) {  
+
+}
+
+/* 600px and up */
+@media (min-width: $screen-xsm-custom-min) {  
+
+}
+
+/* 767px and down */
+@media (max-width: $screen-sm-custom-max) { 
+	.nav-mobile-toggle { 
+		float: right;
+		margin: 5px 0;
+		@include rem(font-size, 24px);
+	}
+}
+
+
+/* ----- SM ----- */
+/* 768px and up */
+@media (min-width: $screen-sm-min) { 
+	.nav-mobile-toggle { display: none; }
+}
+
+/* 768px - 991px */
+@media (min-width: $screen-sm-custom-min) and (max-width: $screen-md-custom-max) { 
+
+}
+
+/* 991px and down */
+@media (max-width: $screen-md-custom-max) {  
+
+}
+
+
+/* ----- MD ----- */
+/* 992px and up */
+@media (min-width: $screen-md-custom-min) {  
+
+}
+
+/* 992px - 1999px */
+@media (min-width: $screen-md-custom-min) and (max-width: $screen-lg-custom-max) {  
+
+}
+
+
+/* ----- LG ----- */
+/* 1200px and up */
+@media (min-width: $screen-lg-custom-min) { 
+
+}
