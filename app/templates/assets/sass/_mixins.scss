@@ -87,3 +87,61 @@
 	url($fontTTF) format('truetype'),
 	url($fontSVG) format('svg');
 }
+
+// Creates a triangle shape on an element
+@mixin triangle($dir, $size, $color, $positionX,  $positionY) {
+	position: relative;
+
+	&:before {
+		position: absolute;
+		content: '';
+		width: 0; 
+		height: 0; 
+		border: $size transparent solid;
+		transform: scale(0.9999); // Antialias the shape
+
+		// The direction of the triangle
+		@if ($dir == "top" or $dir == "up") {
+			border-bottom-color: $color;
+		}
+		@else if ($dir == "right" or $dir == "after") {
+		cborder-left-color: $color;
+		}
+		@else if ($dir == "bottom" or $dir == "down") {
+			border-top-color: $color;
+		}
+		@else if ($dir == "left" or $dir == "before") {
+			border-right-color: $color;
+		}
+
+		// The X position of the triangle
+		@if ($positionX == "left") {
+			left: 0;
+		}
+		@else if ($positionX == "right") {
+			right: 0;
+		}
+		@else if ($positionX == "center") {
+			left: 50%;
+			margin-left: -($size - 1);
+		}
+		@else {
+			left: $positionX;
+		}
+
+		// The Y position of the triangle
+		@if ($positionY == "top") {
+			top: 0;
+		}
+		@else if ($positionY == "bottom") {
+			bottom: 0;
+		}
+		@else if ($positionY == "center") {
+			top: 50%;
+			margin-top: -($size / 2);
+		}
+		@else {
+			top: $positionY;
+		}
+	}
+}
