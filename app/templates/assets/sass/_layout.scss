@@ -55,6 +55,20 @@
 
 // ----- Constant elements -----
 
+// ----- Cookie -----
+.cookie {
+	display: none; 
+	text-align: center;
+	@include rem(font-size, 12px); 
+
+	.close { 
+		float: right; 
+		@include rem(font-size, 22px); 
+	}
+}
+.cookie.active { display: block; }
+
+
 // ----- Header -----
 .header {
     background: #ddd;
@@ -88,33 +102,19 @@
 	.item { 
 		max-height: 450px;
 		overflow: hidden;
-		@include align-parent;
 	}
 	&.header-img-lg .item { 
 		max-height: 675px;
 	}
 
 		.header-text {
-			@include align-center-vertical;
+			@extend .align-center-vertical;
 			position: absolute;
 			text-align: center;
 			color: #fff;
 		}
 			h1 { @include rem(font-size, 52px); }
 }
-
-// ----- Cookie -----
-.cookie {
-	display: none; 
-	text-align: center;
-	@include rem(font-size, 12px); 
-
-	.close { 
-		float: right; 
-		@include rem(font-size, 22px); 
-	}
-}
-.cookie.active { display: block; }
 
 
 // Footer

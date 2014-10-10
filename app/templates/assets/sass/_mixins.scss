@@ -37,35 +37,6 @@
 	}
 }
 
-// Centrally align a block, align parent if the content becomes blurry - http://zerosixthree.se/vertical-align-anything-with-just-3-lines-of-css/
-@mixin align-parent {
-	-webkit-transform-style: preserve-3d;
-	-moz-transform-style: preserve-3d;
-	transform-style: preserve-3d;
-}
-	@mixin align-center-vertical {
-		position: relative;
-		top: 50%;
-		-webkit-transform: translateY(-50%);
-		-ms-transform: translateY(-50%);
-		transform: translateY(-50%);
-	}
-	@mixin align-center-horizontal {
-		position: relative;
-		left: 50%;
-		-webkit-transform: translateX(-50%);
-		-ms-transform: translateX(-50%);
-		transform: translateX(-50%);
-	}
-	@mixin align-center-both {
-		position: relative;
-		left: 50%;
-		top: 50%;
-		-webkit-transform: translate(-50%, -50%);
-		-ms-transform: translate(-50%, -50%);
-		transform: translate(-50%, -50%);
-	}
-
 
 // Setup a webfont path (version is used by fontello)
 @mixin webfont($name, $path, $version) {
@@ -88,7 +59,8 @@
 	url($fontSVG) format('svg');
 }
 
-// Creates a triangle shape on an element
+
+// Creates a triangle shape on an element http://css-tricks.com/examples/ShapesOfCSS/
 @mixin triangle($dir, $size, $color, $positionX,  $positionY) {
 	position: relative;
 
