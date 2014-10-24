@@ -61,59 +61,72 @@
 
 
 // Creates a triangle shape on an element http://css-tricks.com/examples/ShapesOfCSS/
-@mixin triangle($dir, $size, $color, $positionX,  $positionY) {
-	position: relative;
+// E.G. @include triangle(down, 10px, $color-red, 10px, top); 
+// Creates a pointing down triangle, 10px in size, colour red red, left: 10px and top: 0
 
-	&:before {
-		position: absolute;
-		content: '';
-		width: 0; 
-		height: 0; 
-		border: $size transparent solid;
-		transform: scale(0.9999); // Antialias the shape
+// E.G. with optional arguments @include triangle(down, 10px, $color-red, 10px, 10px, right, bottom, before); 
+// Creates a pointing down triangle, 10px in size, colour red red, right: 10px, bottom: 10px on the before pseudo element;
 
-		// The direction of the triangle
-		@if ($dir == "top" or $dir == "up") {
-			border-bottom-color: $color;
-		}
-		@else if ($dir == "right" or $dir == "after") {
-		cborder-left-color: $color;
-		}
-		@else if ($dir == "bottom" or $dir == "down") {
-			border-top-color: $color;
-		}
-		@else if ($dir == "left" or $dir == "before") {
-			border-right-color: $color;
-		}
+// E.G. double down triangle, second triangle is not antialiased to make the line thinner
+// @include triangle(down, 10px, $color-red, 10px, 10px, $positionPseudo: 'after'); 
+// @include triangle(down, 12px, #000, 8px, 10px, $positionPseudo: 'before', $antialias: false); 
 
-		// The X position of the triangle
-		@if ($positionX == "left") {
-			left: 0;
-		}
-		@else if ($positionX == "right") {
-			right: 0;
-		}
-		@else if ($positionX == "center") {
-			left: 50%;
-			margin-left: -($size - 1);
-		}
-		@else {
-			left: $positionX;
-		}
+@mixin triangle($dir, $size, $color, $positionX, $positionY, $positionXProperty: 'left', $positionYProperty: 'top', $positionPseudo: 'before', $antialias: true) { 
 
-		// The Y position of the triangle
-		@if ($positionY == "top") {
-			top: 0;
-		}
-		@else if ($positionY == "bottom") {
-			bottom: 0;
-		}
-		@else if ($positionY == "center") {
-			top: 50%;
-			margin-top: -($size / 2);
-		}
-		@else {
-			top: $positionY;
-		}
-	}
+    position: relative;
+
+    &:#{$positionPseudo} {
+        position: absolute;
+        content: '';
+        width: 0; 
+        height: 0; 
+        border: $size transparent solid;
+        // Antialias the shape
+        @if $antialias { transform: scale(0.9999); }
+
+        // The direction of the triangle
+        @if ($dir == "top" or $dir == "up") {
+            border-bottom-color: $color;
+        }
+        @else if ($dir == "right" or $dir == "after") {
+            border-left-color: $color;
+        }
+        @else if ($dir == "bottom" or $dir == "down") {
+            border-top-color: $color;
+        }
+        @else if ($dir == "left" or $dir == "before") {
+            border-right-color: $color;
+        }
+
+        // The X position of the triangle
+        @if ($positionX == "left") {
+            left: 0;
+        }
+        @else if ($positionX == "right") {
+            right: 0;
+        }
+        @else if ($positionX == "center") {
+            left: 50%;
+            margin-left: -($size - 1);
+        }
+        @else {
+            #{$positionXProperty}: #{$positionX};
+        }
+
+        // The Y position of the triangle
+        @if ($positionY == "top") {
+            top: 0;
+        }
+        @else if ($positionY == "bottom") {
+            bottom: 0;
+        }
+        @else if ($positionY == "center") {
+            top: 50%;
+            margin-top: -($size / 2);
+        }
+        @else {
+            #{$positionYProperty}: #{$positionY};
+        }
+    }
 }
+

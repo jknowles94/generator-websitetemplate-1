@@ -52,9 +52,10 @@ var WebsitetemplateGenerator = yeoman.generators.Base.extend({
         if(this.initGit){
           this.gitRepoURL = localProps.gitRepoURL;
         }
+
+        done();
       }.bind(this));
 
-      done();
     }.bind(this));
   },
 
@@ -81,15 +82,14 @@ var WebsitetemplateGenerator = yeoman.generators.Base.extend({
     this.copy('jshintrc', '.jshintrc');
 
     // Setup Github
-    this.mkdir('git-hooks');
-    this.copy('gitignore', '.gitignore');
+    this.directory('git-hooks', 'git-hooks');
 
     if(this.initGit){
       
       exec('git init', function(){
         //Setup the git-hooks for the new repo
-        this.copy('git-hooks/post-merge', '.git/hooks/post-merge');
-        this.copy('git-hooks/pre-commit', '.git/hooks/pre-commit');
+        // this.copy('git-hooks/post-merge', '.git/hooks/post-merge');
+        // this.copy('git-hooks/pre-commit', '.git/hooks/pre-commit');
 
         exec('git add .',function(){
           exec('git commit -m "initial commit"',function(){
