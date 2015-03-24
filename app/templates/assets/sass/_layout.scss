@@ -1,12 +1,18 @@
 // ----- Layout -----
 
 // Custom containers and columns
-.fullwidth, .fullwidth-sm, .fullwidth-np, .fullwidth-bg {
+.fullwidth, .fullwidth-sm, .fullwidth-lg, .fullwidth-np, .fullwidth-bg {
 	width: 100%;
-	padding-top: 45px;
-	padding-bottom: 45px;
 	@include clearfix();
 	clear: both;
+}
+.fullwidth-lg {
+	padding-top: 45px;
+	padding-bottom: 45px;
+}
+.fullwidth {
+	padding-top: 30px;
+	padding-bottom: 30px;
 }
 .fullwidth-sm {
 	padding-top: 15px;
@@ -19,33 +25,35 @@
 .fullwidth-bg {
 	background-position: center bottom;
 	background-repeat: no-repeat;
+	background-size: cover;
 }
 
-.col-np {
-	padding-left: 0;
-	padding-right: 0;
-}
-.col-lp {
-	padding-left: 30px;
-	padding-right: 30px;
-}
+	.col-np {
+		padding-left: 0;
+		padding-right: 0;
+	}
+	.col-lp {
+		padding-left: 30px;
+		padding-right: 30px;
+	}
 
 
 // Background colours/patterns
 .bg-grey {
-	background: $color-grey-light;
+	background-color: $color-grey-light;
 }
-.bg-black, .bg-black-item .item {
+.bg-black {
 	color: #fff;
-	background: #000;
+	background-color: #000;
 
 	a { color: #fff; }
 }
 
 
-// ----- General panel styling -----
-.panel-title, .panel-intro { text-align: center; }
-.panel-intro { @include rem(margin-bottom, 30px); }
+// General panel styling
+.panel-title, .panel-intro, .panel-outro { text-align: center; }
+.panel-intro { @include rem(margin-bottom, 45px); }
+.panel-outro { @include rem(margin-top, 45px); }
 
 .text-block {
 	padding: 15px;
@@ -53,33 +61,14 @@
 }
 
 
-// ----- Constant elements -----
-
-// ----- Cookie -----
-.cookie {
-	display: none; 
-	text-align: center;
-	@include rem(font-size, 12px); 
-
-	.close { 
-		float: right; 
-		@include rem(font-size, 22px); 
-	}
-}
-.cookie.active { display: block; }
-
 
 // ----- Header -----
 .header {
-    background: #ddd;
+    background-color: #ddd;
 }
 	.logo {
 		float: left;
 		margin: 10px 0;
-		img {
-			width: 100px;
-			height: 50px;
-		}
 	}
 	.nav-primary {
 		float: right;
@@ -88,6 +77,9 @@
 		a {
 			padding: 2px;
 			margin-left: 10px;
+		}
+		a:hover, a:focus, .active {
+			color: $color-grey-medium;
 		}
 	}
 
@@ -108,7 +100,7 @@
 	}
 
 		.header-text {
-			@extend .align-center-vertical;
+			@include align-center();
 			position: absolute;
 			text-align: center;
 			color: #fff;
@@ -117,7 +109,37 @@
 }
 
 
-// Footer
+
+// ----- Cookie -----
+.cookie {
+	display: none; 
+	text-align: left;
+	@include rem(font-size, 14px); 
+	background: $color-grey-medium;
+
+	.container {
+		position: relative;
+		padding-right: 45px;
+	}
+		.cookie-text {
+			float: left;
+			margin-right: 10px;
+			margin-bottom: 4px;
+		}
+			.btn { 
+				float: left; 
+			}
+			.cookie-close { 
+				position: absolute;
+				right: 15px;
+				@include rem(font-size, 32px); 
+			}
+}
+.cookie.active { display: block; }
+
+
+
+// ----- Footer -----
 .footer {
 	@include rem(font-size, 12px);
 	background: $color-grey-light;
@@ -138,17 +160,10 @@
 
 		a { 			
 			padding: 2px;
-			margin-right: 5px;
-		}
-		a:hover {  }
-		a:before {
-			content: "/";
-			padding: 0 10px 0 0;
-		}
-		a:first-child:before {
-			display: none;
+			margin-right: 10px;
 		}
 	}
+
 
 
 /* ----- XS ----- */
@@ -174,18 +189,14 @@
 
 /* 767px and down */
 @media (max-width: $screen-sm-custom-max) { 
-	.nav-mobile-toggle { 
-		float: right;
-		margin: 5px 0;
-		@include rem(font-size, 24px);
-	}
+
 }
 
 
 /* ----- SM ----- */
 /* 768px and up */
 @media (min-width: $screen-sm-min) { 
-	.nav-mobile-toggle { display: none; }
+
 }
 
 /* 768px - 991px */

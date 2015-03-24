@@ -4,7 +4,7 @@
 // ----- Sample module -----
 .grid {
 
-	&.fullwidth { padding-bottom: 15px; }
+&.fullwidth { padding-bottom: 0; }
 
 	.item {
 		padding: 15px;
@@ -16,7 +16,6 @@
 		}
 	}
 }
-
 
 /* ----- XS ----- */
 /* 479px and down */
@@ -48,7 +47,20 @@
 /* ----- SM ----- */
 /* 768px and up */
 @media (min-width: $screen-sm-min) { 
+// ----- Sample flexbox module - Keeps the grid cards an equal height -----
+	.flexbox .grid .row, .row-flex {
+		display: flex;
+		flex-wrap: wrap;
 
+		> div[class*='col-'] {
+			display: flex;
+			flex: 0 1 auto; 
+		}
+
+			.item {
+				max-width: 100%;
+			}
+	}
 }
 
 /* 768px - 991px */

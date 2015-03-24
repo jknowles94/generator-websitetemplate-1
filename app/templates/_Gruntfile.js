@@ -152,4 +152,5 @@ module.exports = function (grunt) {
     grunt.registerTask('default', ['compass:dev', 'autoprefixer']);
     grunt.registerTask('setup', ['clean:precommit','shell:precommit','clean:pull','shell:pull']);
     grunt.registerTask('live', ['jshint', 'uglify', 'compass:live', 'autoprefixer', 'cssmin']);
+    grunt.registerTask('buildJS', ['useminPrepare','concat:generated','uglify:generated',]);
 };

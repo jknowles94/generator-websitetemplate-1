@@ -1,62 +1,63 @@
 // ----- Mixins -----
+
 // REM  mixin - http://hugogiraudel.com/2013/03/18/ultimate-rem-mixin/
 @function parseInt($n) { 
-	@return $n / ($n * 0 + 1);
+    @return $n / ($n * 0 + 1);
 }
 
 @mixin rem($property, $values) {
-	$px : (); 
-	$rem: (); 
+    $px : (); 
+    $rem: (); 
 
-	@each $value in $values { 
+    @each $value in $values { 
 
-		@if $value == 0 or $value == auto { 
-			$px : append($px , $value);
-			$rem: append($rem, $value);
-		} @else { 
-			$unit: unit($value);   
-			$val: parseInt($value); 
+        @if $value == 0 or $value == auto { 
+            $px : append($px , $value);
+            $rem: append($rem, $value);
+        } @else { 
+            $unit: unit($value);   
+            $val: parseInt($value); 
 
-			@if $unit == "px" {  
-				$px : append($px,  $value);
-				$rem: append($rem, ($val / 10 + rem));
-			}
+            @if $unit == "px" {  
+                $px : append($px,  $value);
+                $rem: append($rem, ($val / 10 + rem));
+            }
 
-			@if $unit == "rem" { 
-				$px : append($px,  ($val * 10 + px));
-				$rem: append($rem, $value);
-			}
-		}
-	}
+            @if $unit == "rem" { 
+                $px : append($px,  ($val * 10 + px));
+                $rem: append($rem, $value);
+            }
+        }
+    }
 
-	@if $px == $rem {     
-		#{$property}: $px;  
-	} @else {
-		#{$property}: $px;  
-		#{$property}: $rem;
-	}
+    @if $px == $rem {     
+        #{$property}: $px;  
+    } @else {
+        #{$property}: $px;  
+        #{$property}: $rem;
+    }
 }
 
 
 // Setup a webfont path (version is used by fontello)
-@mixin webfont($name, $path, $version) {
-	$fontVersion: '';
-	@if $version != '' {
-		$fontVersion: '?' + $version;
-	}
+@mixin webfont($name, $fileName, $filePath, $version) {
+    $fontVersion: '';
+    @if $version != '' {
+        $fontVersion: '?' + $version;
+    }
 
-	$fontEOT: $path + $name + '.eot' + $fontVersion;
-	$fontEOTIE: $path + $name + '.eot' + $fontVersion + '#iefix';
-	$fontWOFF: $path + $name + '.woff' + $fontVersion;
-	$fontTTF: $path + $name + '.ttf' + $fontVersion;
-	$fontSVG: $path + $name + '.eot' + $fontVersion + '#' + $name;
+    $fontEOT: $filePath + $fileName + '.eot' + $fontVersion;
+    $fontEOTIE: $filePath + $fileName + '.eot' + $fontVersion + '#iefix';
+    $fontWOFF: $filePath + $fileName + '.woff' + $fontVersion;
+    $fontTTF: $filePath + $fileName + '.ttf' + $fontVersion;
+    $fontSVG: $filePath + $fileName + '.eot' + $fontVersion + '#' + $name;
 
-	font-family: $name;
-	src: url($fontEOT);
-	src: url($fontEOTIE) format('embedded-opentype'),
-	url($fontWOFF) format('woff'),
-	url($fontTTF) format('truetype'),
-	url($fontSVG) format('svg');
+    font-family: $name;
+    src: url($fontEOT);
+    src: url($fontEOTIE) format('embedded-opentype'),
+    url($fontWOFF) format('woff'),
+    url($fontTTF) format('truetype'),
+    url($fontSVG) format('svg');
 }
 
 
@@ -128,5 +129,40 @@
             #{$positionYProperty}: #{$positionY};
         }
     }
+}
+
+
+// Centrally align a block, align parent 3d option should be enabled if the block becomes blurry - http://zerosixthree.se/vertical-align-anything-with-just-3-lines-of-css/
+// E.G. @include align-center() aligns an element vertically
+// E.G. @include align-center($parent: true, $parent3d: true) sets up parent element
+@mixin align-center($axis: 'vertical', $parent: false, $parent3d: false) { 
+
+    // Child element
+    @if ($parent != true) {
+        position: relative;
+
+        // Vertically center
+        @if ($axis == 'vertical' or $axis == 'both') {
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        // Horizontally center
+        @if ($axis == 'horizontal' or $axis == 'both') {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+    }
+    // Parent element
+    @else {
+        overflow: hidden;
+
+        @if ($parent3d) {
+            transform-style: preserve-3d;
+        }
+
+    }
+
 }
 

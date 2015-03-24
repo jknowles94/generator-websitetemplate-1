@@ -47,15 +47,15 @@ var website = (function () {
 
 // Cookies
     var cookiePolicy = (function(){
-    	var $cookieWrapper = $('#cookie-wrapper');
+    	var $cookie = $('#cookie');
 
         function init() {
             var cookie = Cookies.get('CLIENTNAMEcookie');
 
             if(cookie === undefined){
-            	$cookieWrapper.addClass('active');
+            	$cookie.addClass('active');
+                $cookie.on('click','.close', close);
                 Cookies.set('CLIENTNAMEcookie', 'true', { expires: 60*60*24*365 });
-                $cookieWrapper.on('click','.close', close);
             }
             else{
                 close();
@@ -63,7 +63,7 @@ var website = (function () {
         }
 
         function close() {
-            $cookieWrapper.remove();
+            $cookie.remove();
             return false;
         }
 

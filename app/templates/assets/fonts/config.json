@@ -105,12 +105,6 @@
       ]
     },
     {
-      "uid": "72109d2fb3088d0e66ea6a9204297651",
-      "css": "loading",
-      "code": 59401,
-      "src": "fontelico"
-    },
-    {
       "uid": "0d08dbb1dd648a43bdea81b7e6c9e036",
       "css": "location",
       "code": 59404,
@@ -195,10 +189,10 @@
       "src": "modernpics"
     },
     {
-      "uid": "rrhco7mfj6ro9yzhe4a1rbln9flw47re",
+      "uid": "8da3ac534210aae9c0f0e13804c1df97",
       "css": "cancel",
-      "code": 59414,
-      "src": "modernpics"
+      "code": 59397,
+      "src": "websymbols"
     }
   ]
 }

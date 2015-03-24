@@ -1,5 +1,29 @@
 // ----- Variables -----
 // Custom breakpoint variables
+$screen-xs-custom:            480px !default;
+$screen-xs-custom-min:        $screen-xs-custom !default;
+$screen-xs-custom-max:        ($screen-xs-custom-min - 1) !default;
+
+$screen-xsm-custom:           600px !default;
+$screen-xsm-custom-min:       $screen-xsm-custom !default;
+$screen-xsm-custom-max:       ($screen-xsm-custom-min - 1) !default;
+
+$screen-sm-custom:            768px !default;
+$screen-sm-custom-min:        $screen-sm-custom !default;
+$screen-sm-custom-max:        ($screen-sm-custom-min - 1) !default;
+
+$screen-md-custom:            992px !default;
+$screen-md-custom-min:        $screen-md-custom !default;
+$screen-md-custom-max:        ($screen-md-custom-min - 1) !default;
+
+$screen-lg-custom:            1200px !default;
+$screen-lg-custom-min:        $screen-lg-custom !default;
+$screen-lg-custom-max:        ($screen-lg-custom-min - 1) !default;
+
+
+// ----- Variables -----
+
+// Custom breakpoint variables
 $screen-xs-custom:			480px !default;
 $screen-xs-custom-min:		$screen-xs-custom !default;
 $screen-xs-custom-max:		($screen-xs-custom-min - 1) !default;
@@ -38,13 +62,12 @@ $color-youtube: 			#ed3437;
 $font-regular:				Arial, "Helvetica Neue", Helvetica, sans-serif;
 $font-heading:				Arial, "Helvetica Neue", Helvetica, sans-serif;
 
-
 @font-face {
-	@include webfont('fontello', '../fonts/', '20211637');
+	@include webfont('fontello', 'fontello', '../fonts/', '77006272');
 	font-weight: normal;
 	font-style: normal;
 }
-[class^="icon-"]:before, [class*=" icon-"]:before {
+[class^="icon-"]:before, [class*=" icon-"]:before, .icon-inline-right:after {
 	font-family: "fontello";
 	font-style: normal;
 	font-weight: normal;
@@ -63,7 +86,7 @@ $font-heading:				Arial, "Helvetica Neue", Helvetica, sans-serif;
 .icon-gplus:before { content: '\e802'; } /* '' */
 .icon-search:before { content: '\e803'; } /* '' */
 .icon-navicon:before { content: '\e804'; } /* '' */
-.icon-loading:before { content: '\e809'; } /* '' */
+.icon-cancel:before { content: '\e805'; } /* '' */
 .icon-ok:before { content: '\e80a'; } /* '' */
 .icon-calendar-empty:before { content: '\e80b'; } /* '' */
 .icon-location:before { content: '\e80c'; } /* '' */
@@ -76,8 +99,29 @@ $font-heading:				Arial, "Helvetica Neue", Helvetica, sans-serif;
 .icon-right-dir:before { content: '\e813'; } /* '' */
 .icon-plus:before { content: '\e814'; } /* '' */
 .icon-minus:before { content: '\e815'; } /* '' */
-.icon-cancel:before { content: '\e816'; } /* '' */
 .icon-chevron-up:before { content: '\e817'; } /* '' */
 .icon-chevron-down:before { content: '\e818'; } /* '' */
 .icon-chevron-left:before { content: '\e819'; } /* '' */
-.icon-chevron-right:before { content: '\e81a'; } /* '' */
+.icon-chevron-right:before, .icon-chevron-right.icon-inline-right:after { content: '\e81a'; } /* '' */
+
+.icon-inline-right {
+	padding-right: 1.5em;
+	
+	&:before { display: none; }
+	&:after { 
+		width: 1.5em; 
+		margin-right: -1.5em; 
+		text-align: right;
+	}
+}
+
+.icon-inline-left {
+	display: inline-block;
+	padding-left: 1.5em;
+	
+	&:before { 
+		width: 1.5em; 
+		margin-left: -1.5em;
+		text-align: left;
+	}
+}
