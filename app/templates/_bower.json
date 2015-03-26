@@ -1,6 +1,6 @@
 {
   "name": "package",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "dependencies": {
     "bootstrap-sass-official": "~3.3.4",
     "jquery": "~1.11.2",

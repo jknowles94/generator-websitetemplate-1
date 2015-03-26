@@ -83,7 +83,7 @@ module.exports = function (grunt) {
                     src : '<%%= config.cssPath %>/main.css'
                 },
                 options: {
-                    proxy: "<%= local_address %>",
+                    proxy: '<%= local_address %>',
                     watchTask: true
                 }
             }

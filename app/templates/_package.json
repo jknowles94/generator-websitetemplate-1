@@ -1,5 +1,5 @@
 {
-	"name": "HTML Template",
+	"name": "html-template",
 	"version": "1.0.0",
 	"dependencies": {
 		"grunt": "~0.4.5",

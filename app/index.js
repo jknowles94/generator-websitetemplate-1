@@ -40,6 +40,7 @@ var WebsitetemplateGenerator = yeoman.generators.Base.extend({
 
     this.prompt(prompts, function (props) {
       this.websiteName = props.websiteName;
+      this.localAddress = props.localAddress;
       this.initGit = props.initGit;
 
       var newPrompts = [];
