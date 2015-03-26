@@ -21,11 +21,15 @@ var WebsitetemplateGenerator = yeoman.generators.Base.extend({
   askFor: function () {
     var done = this.async();
 
-    this.log(yosay('Welcome to the marvelous Website template generator!'));
+    this.log(yosay('Welcome to the HTML Website template generator!'));
 
     var prompts = [{
       name: 'websiteName',
-      message: 'What is your websites\'s name ?'
+      message: 'What is your websites\'s name?'
+    },
+    {
+      name: 'localAddress',
+      message: 'What is your websites\'s local address?'
     },
     {
       type: 'confirm',
@@ -63,7 +67,8 @@ var WebsitetemplateGenerator = yeoman.generators.Base.extend({
 
     // Takes in variable from the setup
     var context = {
-      website_name: this.websiteName
+      website_name: this.websiteName,
+      local_address: this.localAddress
     };
 
     // Copies HTML files from the template

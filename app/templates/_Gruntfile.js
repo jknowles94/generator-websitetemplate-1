@@ -2,10 +2,10 @@ module.exports = function (grunt) {
 
     // Configurable paths
     var config = {
-        sassPath:   'assets/sass',
-        cssPath:    'assets/styles',
-        imagesPath: 'assets/images',
-        jsPath:     'assets/scripts'
+        sassPath:       'assets/sass',
+        cssPath:        'assets/styles',
+        imagesPath:     'assets/images',
+        jsPath:         'assets/scripts'
     };
 
     // Project configuration.
@@ -75,6 +75,18 @@ module.exports = function (grunt) {
                 tasks: ['jshint']
             }
 
+        },
+
+        browserSync: {
+            dev: {
+                bsFiles: {
+                    src : '<%%= config.cssPath %>/main.css'
+                },
+                options: {
+                    proxy: "<%= local_address %>",
+                    watchTask: true
+                }
+            }
         },
 
         // Checks JS file for errors
@@ -150,7 +162,8 @@ module.exports = function (grunt) {
 
     // Default task(s)
     grunt.registerTask('default', ['compass:dev', 'autoprefixer']);
+    grunt.registerTask('watchsync', ['browserSync', 'watch']);
     grunt.registerTask('setup', ['clean:precommit','shell:precommit','clean:pull','shell:pull']);
     grunt.registerTask('live', ['jshint', 'uglify', 'compass:live', 'autoprefixer', 'cssmin']);
-    grunt.registerTask('buildJS', ['useminPrepare','concat:generated','uglify:generated',]);
+    grunt.registerTask('buildJS', ['useminPrepare','concat','uglify',]);
 };
