@@ -54,7 +54,8 @@
 
 		> div[class*='col-'] {
 			display: flex;
-			flex: 0 1 auto; 
+			flex: 0 1 auto;
+			margin: -0.2px; // Fixes chrome bug
 		}
 
 			.item {
