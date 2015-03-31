@@ -76,14 +76,14 @@
 
     position: relative;
 
+    $transform: '';
+
     &:#{$positionPseudo} {
         position: absolute;
         content: '';
         width: 0; 
         height: 0; 
         border: $size transparent solid;
-        // Antialias the shape
-        @if $antialias { transform: scale(0.9999); }
 
         // The direction of the triangle
         @if ($dir == "top" or $dir == "up") {
@@ -108,7 +108,7 @@
         }
         @else if ($positionX == "center") {
             left: 50%;
-            margin-left: -($size - 1);
+            $transform: translateX(-50%);
         }
         @else {
             #{$positionXProperty}: #{$positionX};
@@ -123,11 +123,18 @@
         }
         @else if ($positionY == "center") {
             top: 50%;
-            margin-top: -($size / 2);
+            $transform: #{$transform} translateY(-50%);
         }
         @else {
             #{$positionYProperty}: #{$positionY};
         }
+
+        // Antialias the shape
+        @if $antialias { 
+            $transform: #{$transform} scale(0.9999); 
+        }
+
+        transform: #{$transform};
     }
 }
 
@@ -137,21 +144,25 @@
 // E.G. @include align-center($parent: true, $parent3d: true) sets up parent element
 @mixin align-center($axis: 'vertical', $parent: false, $parent3d: false) { 
 
+    $transform: '';
+
     // Child element
     @if ($parent != true) {
         position: relative;
 
-        // Vertically center
-        @if ($axis == 'vertical' or $axis == 'both') {
-            top: 50%;
-            transform: translateY(-50%);
-        }
-
         // Horizontally center
         @if ($axis == 'horizontal' or $axis == 'both') {
             left: 50%;
-            transform: translateX(-50%);
+            $transform: translateX(-50%);
         }
+
+        // Vertically center
+        @if ($axis == 'vertical' or $axis == 'both') {
+            top: 50%;
+            $transform: #{$transform} translateY(-50%);
+        }
+
+        transform: #{$transform};
 
     }
     // Parent element
@@ -165,4 +176,3 @@
     }
 
 }
-

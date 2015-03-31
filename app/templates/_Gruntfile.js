@@ -141,7 +141,8 @@ module.exports = function (grunt) {
             build: {
                 files: {
                     '<%%= config.jsPath %>/plugins.min.js': ['<%%= config.jsPath %>/plugins.js'],
-                    '<%%= config.jsPath %>/main.min.js': ['<%%= config.jsPath %>/main.js']
+                    '<%%= config.jsPath %>/main.min.js': ['<%%= config.jsPath %>/main.js'],
+                    '<%%= config.jsPath %>/modernizr.min.js': ['<%%= config.jsPath %>/modernizr.js']
                 }
             }
         },

@@ -78,7 +78,7 @@ nav ul { list-style: none; list-style-image: none; }
 .nav-social {
 	a {
 		opacity: .9;
-		@include transition(all, 200ms);
+		transition: all 250ms;
 
 		&:hover { opacity: 1; }
 	}
@@ -106,7 +106,7 @@ nav ul { list-style: none; list-style-image: none; }
 	border: 1px solid #000;
  	cursor: pointer;
 
- 	@include transition(all, 250ms);
+ 	transition: all 250ms;
 }
     .btn:hover, a:hover .btn {
     	color: $color-grey-dark;
