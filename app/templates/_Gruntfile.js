@@ -1,38 +1,37 @@
+// To check for new package updates see https://www.npmjs.com/package/npm-check-updates
 module.exports = function (grunt) {
 
-    // Configurable paths
+    // Configurable options
     var config = {
         sassPath:       'assets/sass',
         cssPath:        'assets/styles',
         imagesPath:     'assets/images',
-        jsPath:         'assets/scripts'
+        jsPath:         'assets/scripts',
+        sourcemap:      false
     };
 
     // Project configuration.
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
 
-        // Project paths
+        // Project options
         config: config,
 
         // Compass options used to compile SASS into CSS
         compass: {
             dev: {
                 options: {
-                    sassDir: '<%%= config.sassPath %>',
-                    cssDir: '<%%= config.cssPath %>',
-                    imagesDir: '<%%= config.imagesPath %>',
+                    sassDir: '<%= config.sassPath %>',
+                    cssDir: '<%= config.cssPath %>',
                     environment: 'development',
-                    httpGeneratedImagesPath: 'images'
+                    sourcemap: '<%= config.sourcemap %>'
                 }
             },
             live: {
                 options: {
-                    sassDir: '<%%= config.sassPath %>',
-                    cssDir: '<%%= config.cssPath %>',
-                    imagesDir: '<%%= config.imagesPath %>',
-                    environment: 'production',
-                    httpGeneratedImagesPath: 'images'
+                    sassDir: '<%= config.sassPath %>',
+                    cssDir: '<%= config.cssPath %>',
+                    environment: 'production'
                 }
             }
         },
@@ -40,14 +39,15 @@ module.exports = function (grunt) {
         // Add vendor prefixed styles
         autoprefixer: {
             options: {
-                browsers: ['last 2 version', 'last 4 Explorer versions']
+                browsers: ['last 2 version', 'last 4 Explorer versions'], 
+                map: '<%= config.sourcemap %>'
             },
             dist: {
                 files: [{
                     expand: true,
                     src: 'main.css',
-                    cwd: '<%%= config.cssPath %>',
-                    dest: '<%%= config.cssPath %>'
+                    cwd: '<%= config.cssPath %>',
+                    dest: '<%= config.cssPath %>'
                 }]
             }
         },
@@ -122,7 +122,7 @@ module.exports = function (grunt) {
         },
 
 
-        // Reads the js files from the specified html file and generates the concat string so your js is in the right order. Run with grunt useminPrepare and it will give you the correct config for your concat, just remove the .tmp/concat/ from the destination file string -  https://github.com/yeoman/grunt-usemin
+        // Reads the js files from the specified html file and generates the concat & uglify config, run with grunt buildJS
         useminPrepare: {
             html: 'template.html'
         },
@@ -166,5 +166,5 @@ module.exports = function (grunt) {
     grunt.registerTask('watchsync', ['browserSync', 'watch']);
     grunt.registerTask('setup', ['clean:precommit','shell:precommit','clean:pull','shell:pull']);
     grunt.registerTask('live', ['jshint', 'uglify', 'compass:live', 'autoprefixer', 'cssmin']);
-    grunt.registerTask('buildJS', ['useminPrepare','concat','uglify',]);
+    grunt.registerTask('buildJS', ['useminPrepare','concat:generated']);
 };

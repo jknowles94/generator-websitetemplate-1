@@ -196,7 +196,9 @@
 /* ----- SM ----- */
 /* 768px and up */
 @media (min-width: $screen-sm-min) { 
-
+	.nav-mobile-toggle {
+		display: none;
+	}
 }
 
 /* 768px - 991px */
