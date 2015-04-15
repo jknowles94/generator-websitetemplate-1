@@ -1,47 +1,57 @@
 var website = (function () {
-// Responsive stae managerment
-	var responsiveStates = (function () {
-		return {
-			init: function () {
-				ssm = ssm || {};
+// Responsive state management
+	var responsiveStates = (function() {
 
-				ssm.addStates([
-					{
-						id: 'xs',
-						maxWidth: 767,
-						colorbox: false
+		function init() {
+			ssm.addStates([
+				{
+					id: 'xs',
+					maxWidth: 767,
+					colorbox: false,
+					onEnter: function(){
+						console.log('Enter mobile');
 					},
-					{
-						id: 'sm',
-						minWidth: 768,
-						maxWidth: 991,
-						colorbox: false
-					},
-					{
-						id: 'md',
-						minWidth: 992,
-						maxWidth: 1199
-					},
-					{
-						id: 'lg',
-						minWidth: 1200
-					}]
-				).ready();
-			},
+					onLeave: function(){
+						console.log('Leave mobile');
+					}
+				},
+				{
+					id: 'sm',
+					minWidth: 768,
+					maxWidth: 991,
+					colorbox: false
+				},
+				{
+					id: 'md',
+					minWidth: 992,
+					maxWidth: 1199
+				},
+				{
+					id: 'lg',
+					minWidth: 1200
+				}
+			]);
+			ssm.ready();
+		}
 
-			is: function (state) {
-				var states = ssm.getCurrentStates();
-				for (var prop in states) {
-					if (states.hasOwnProperty(prop)) {
-						if (states[prop].id === state) {
-							return true;
-						}
+		function current(state) {
+			var states = ssm.getCurrentStates();
+
+			for (var prop in states) {
+				if (states.hasOwnProperty(prop)) {
+					if (states[prop].id === state) {
+						return true;
 					}
 				}
-				return false;
-
 			}
-		};
+
+			return false;
+		}
+
+        return {
+            init: init,
+            current: current
+        };
 	}());
 
 
