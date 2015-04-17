@@ -87,7 +87,7 @@ var website = (function () {
 	var siteForms = (function () {
 		var $forms = $('.form-validate');
 
-		var init = function () {
+		function init() {
 			$forms.bootstrapValidator({
 				excluded: [':disabled'],
 				feedbackIcons: {
@@ -96,7 +96,7 @@ var website = (function () {
 				validating: 'icon-loading'
 				}
 			});
-		};
+		}
 
 		return {
 			init: function () {
