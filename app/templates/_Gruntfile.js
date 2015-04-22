@@ -21,16 +21,16 @@ module.exports = function (grunt) {
         compass: {
             dev: {
                 options: {
-                    sassDir: '<%= config.sassPath %>',
-                    cssDir: '<%= config.cssPath %>',
+                    sassDir: '<%%= config.sassPath %>',
+                    cssDir: '<%%= config.cssPath %>',
                     environment: 'development',
-                    sourcemap: '<%= config.sourcemap %>'
+                    sourcemap: '<%%= config.sourcemap %>'
                 }
             },
             live: {
                 options: {
-                    sassDir: '<%= config.sassPath %>',
-                    cssDir: '<%= config.cssPath %>',
+                    sassDir: '<%%= config.sassPath %>',
+                    cssDir: '<%%= config.cssPath %>',
                     environment: 'production'
                 }
             }
@@ -40,14 +40,14 @@ module.exports = function (grunt) {
         autoprefixer: {
             options: {
                 browsers: ['last 2 version', 'last 4 Explorer versions'], 
-                map: '<%= config.sourcemap %>'
+                map: '<%%= config.sourcemap %>'
             },
             dist: {
                 files: [{
                     expand: true,
                     src: 'main.css',
-                    cwd: '<%= config.cssPath %>',
-                    dest: '<%= config.cssPath %>'
+                    cwd: '<%%= config.cssPath %>',
+                    dest: '<%%= config.cssPath %>'
                 }]
             }
         },
@@ -63,7 +63,7 @@ module.exports = function (grunt) {
             },
 
             compass: {
-                files: ['<%= config.sassPath %>/{,*/}*.{scss,sass}'],
+                files: ['<%%= config.sassPath %>/{,*/}*.{scss,sass}'],
                 tasks: ['compass:dev', 'autoprefixer', 'notify:compass'],
                 options: {
                     livereload: true
@@ -71,7 +71,7 @@ module.exports = function (grunt) {
             },
 
             jshint: {
-                files: ['<%= config.jsPath %>/main.js'],
+                files: ['<%%= config.jsPath %>/main.js'],
                 tasks: ['jshint']
             }
 
@@ -80,7 +80,7 @@ module.exports = function (grunt) {
         browserSync: {
             dev: {
                 bsFiles: {
-                    src : '<%= config.cssPath %>/main.css'
+                    src : '<%%= config.cssPath %>/main.css'
                 },
                 options: {
                     proxy: '<%= local_address %>',
@@ -91,7 +91,7 @@ module.exports = function (grunt) {
 
         // Checks JS file for errors
         jshint: {
-            all: ['<%= config.jsPath %>/main.js'],
+            all: ['<%%= config.jsPath %>/main.js'],
             options: {
                 '-W099': true, // Stops mixed tabs and spaces error
             },
@@ -140,9 +140,9 @@ module.exports = function (grunt) {
         uglify: {
             build: {
                 files: {
-                    '<%= config.jsPath %>/plugins.min.js': ['<%= config.jsPath %>/plugins.js'],
-                    '<%= config.jsPath %>/main.min.js': ['<%= config.jsPath %>/main.js'],
-                    '<%= config.jsPath %>/modernizr.min.js': ['<%= config.jsPath %>/modernizr.js']
+                    '<%%= config.jsPath %>/plugins.min.js': ['<%%= config.jsPath %>/plugins.js'],
+                    '<%%= config.jsPath %>/main.min.js': ['<%%= config.jsPath %>/main.js'],
+                    '<%%= config.jsPath %>/modernizr.min.js': ['<%%= config.jsPath %>/modernizr.js']
                 }
             }
         },
@@ -151,7 +151,7 @@ module.exports = function (grunt) {
         cssmin: {
             build: {
                 files: {
-                    '<%= config.cssPath %>/main.min.css': ['<%= config.cssPath %>/main.css']
+                    '<%%= config.cssPath %>/main.min.css': ['<%%= config.cssPath %>/main.css']
                 }
             }
         }
