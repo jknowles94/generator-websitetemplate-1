@@ -198,38 +198,35 @@ nav ul { list-style: none; list-style-image: none; }
 
 
 
-/* ----- XS ----- */
-/* 479px and down */
+// ----- XS - 479px and down -----
 @media (max-width: $screen-xs-custom-max) {  
 
 }
 
-/* 480px and up */
+// 480px and up
 @media (min-width: $screen-xs-custom-min) {  
 
 }
 
-/* 599px and down */
+// 599px and down
 @media (max-width: $screen-xsm-custom-max) {  
 
 }
 
-/* 600px and up */
+// 600px and up
 @media (min-width: $screen-xsm-custom-min) {  
 
 }
 
-/* 767px and down */
+// 767px and down
 @media (max-width: $screen-sm-custom-max) { 
 	html {
-		// font-size: 50%;
-		font-size: 56.25%;
+		font-size: 9px;
 	}
 }
 
 
-/* ----- SM ----- */
-/* 768px and up */
+// ----- SM - 768px and up ----- 
 @media (min-width: $screen-sm-min) { 
 	h1, .h1 { @include rem(font-size, 46px); }
 	h2, .h2 { @include rem(font-size, 36px); }
@@ -240,33 +237,32 @@ nav ul { list-style: none; list-style-image: none; }
 	.text-lg { @include rem(font-size, 30px); } 
 	.text-md { @include rem(font-size, 24px); }
 	.text-sm { @include rem(font-size, 12px); }
+
 }
 
-/* 768px - 991px */
+// 768px - 991px
 @media (min-width: $screen-sm-custom-min) and (max-width: $screen-md-custom-max) { 
 
 }
 
-/* 991px and down */
+// 991px and down
 @media (max-width: $screen-md-custom-max) {  
 
 }
 
 
-/* ----- MD ----- */
-/* 992px and up */
+// ----- MD - 992px and up  -----
 @media (min-width: $screen-md-custom-min) {  
 
 }
 
-/* 992px - 1999px */
+// 992px - 1999px
 @media (min-width: $screen-md-custom-min) and (max-width: $screen-lg-custom-max) {  
 
 }
 
 
-/* ----- LG ----- */
-/* 1200px and up */
+// ----- LG - 1200px and up -----
 @media (min-width: $screen-lg-custom-min) { 
 
 }

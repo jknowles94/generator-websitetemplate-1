@@ -7,7 +7,8 @@ module.exports = function (grunt) {
         cssPath:        'assets/styles',
         imagesPath:     'assets/images',
         jsPath:         'assets/scripts',
-        sourcemap:      false
+        sourcemap:      false,
+        outputStyle:    'expanded' // Used for SASS, expanded is for development, compressed is for live
     };
 
     // Project configuration.
@@ -36,6 +37,21 @@ module.exports = function (grunt) {
             }
         },
 
+
+        // Compile SASS using grunt-sass(libsass)
+        sass: {
+            options: {
+                sourceMap: '<%= config.sourcemap %>',
+                outputStyle: '<%= config.outputStyle %>'
+            },
+            dist: {
+                files: {
+                    '<%= config.cssPath %>/main.css': '<%= config.sassPath %>/main.scss'
+                }
+            }
+        },
+
+
         // Add vendor prefixed styles
         autoprefixer: {
             options: {
@@ -54,20 +70,22 @@ module.exports = function (grunt) {
 
         // Watchs files for changes then compiles and reloads the browser
         watch: {
-
-            html: {
-                files: ['index.html','styleguide.html','template.html'],
-                options: {
-                    livereload: true
-                }
+            options: {
+                livereload: true
             },
 
-            compass: {
-                files: ['<%%= config.sassPath %>/{,*/}*.{scss,sass}'],
-                tasks: ['compass:dev', 'autoprefixer', 'notify:compass'],
-                options: {
-                    livereload: true
-                }
+            html: {
+                files: ['index.html','styleguide.html','template.html']
+            },
+
+            // compass: {
+            //     files: ['<%%= config.sassPath %>/{,*/}*.{scss,sass}'],
+            //     tasks: ['compass:dev', 'autoprefixer', 'notify:compass']
+            // },
+
+            sass: {
+                files: ['<%= config.sassPath %>/{,*/}*.{scss,sass}'],
+                tasks: ['sass', 'autoprefixer', 'notify:sass']
             },
 
             jshint: {
@@ -118,6 +136,13 @@ module.exports = function (grunt) {
                 title: '<%= website_name %>', 
                 message: 'Compass compiled',
               }
+            },
+
+            sass: {
+              options: {
+                title: '<%= website_name %>',
+                message: 'SASS compiled',
+              }
             }
         },
 
@@ -162,7 +187,7 @@ module.exports = function (grunt) {
     require('load-grunt-tasks')(grunt);
 
     // Default task(s)
-    grunt.registerTask('default', ['compass:dev', 'autoprefixer']);
+    grunt.registerTask('default', ['sass', 'autoprefixer']);
     grunt.registerTask('watchsync', ['browserSync', 'watch']);
     grunt.registerTask('setup', ['clean:precommit','shell:precommit','clean:pull','shell:pull']);
     grunt.registerTask('live', ['jshint', 'uglify', 'compass:live', 'autoprefixer', 'cssmin']);
