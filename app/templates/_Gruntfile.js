@@ -55,7 +55,7 @@ module.exports = function (grunt) {
         // Add vendor prefixed styles
         autoprefixer: {
             options: {
-                browsers: ['last 2 version', 'last 4 Explorer versions'], 
+                browsers: ['last 2 versions', 'last 3 Explorer versions'], 
                 map: '<%%= config.sourcemap %>'
             },
             dist: {
