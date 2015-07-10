@@ -148,6 +148,7 @@
 
     // Child element
     @if ($parent != true) {
+        display: block;
         position: relative;
 
         // Horizontally center
